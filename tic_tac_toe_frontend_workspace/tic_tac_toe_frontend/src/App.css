@@ -1,0 +1,1431 @@
+:root {
+  --primary: #1976d2;
+  --accent: #ff7043;
+  --background: #f5f5f5;
+  --secondary: #fff176;
+
+  --text-color: #27314d;
+  --text-secondary: #586380;
+  --border-color: rgba(33, 53, 103, 0.13);
+
+  --cell-size: 82px;
+  --cell-font: 2.7rem;
+}
+
+.ttt-container {
+  margin: 0 auto;
+  max-width: 370px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: #fff;
+  margin-top: 132px;
+  border-radius: 24px;
+  box-shadow: 0 6px 38px rgba(33,53,103,0.11);
+  padding: 38px 36px 36px 36px;
+}
+
+.ttt-board {
+  display: grid;
+  grid-template-columns: repeat(3, var(--cell-size));
+  grid-template-rows: repeat(3, var(--cell-size));
+  gap: 8px;
+  margin: 0 auto 24px auto;
+  background: var(--background);
+  border-radius: 14px;
+  padding: 7px;
+  box-shadow: 0 2px 11px rgba(25, 118, 210, 0.09);
+}
+
+.ttt-cell {
+  width: var(--cell-size);
+  height: var(--cell-size);
+  background: var(--secondary);
+  border: none;
+  border-radius: 10px;
+  font-size: var(--cell-font);
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 1px 4px #ffedc980;
+  margin: 0;
+  cursor: pointer;
+  transition: background 0.19s, color 0.21s;
+}
+.ttt-cell:disabled,
+.ttt-cell[disabled] {
+  opacity: 0.69;
+  cursor: not-allowed;
+  background: #f5f7fa;
+  color: var(--text-secondary);
+}
+
+.ttt-status {
+  font-size: 1.21rem;
+  font-weight: 500;
+  margin-bottom: 26px;
+  letter-spacing: 0.021em;
+  color: var(--primary);
+  min-height: 2.2em;
+  text-align: center;
+  background: #fefefe;
+  padding: 5px 0 5px 0;
+  border-radius: 8px;
+}
+
+.ttt-actions {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+/* Standard Button (override .btn in light mode) */
+.btn {
+  background-color: var(--primary);
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  padding: 10px 20px;
+  font-size: 1.02rem;
+  font-weight: 500;
+  cursor: pointer;
+  margin: 0 3px;
+  transition: background 0.18s;
+  box-shadow: 0 1px 3px rgba(33, 53, 103, 0.03);
+}
+.btn:hover,
+.btn:focus {
+  background: #1253a6;
+}
+
+.btn-large {
+  padding: 13px 32px;
+  font-size: 1.17rem;
+  border-radius: 6px;
+}
+
+
+
+body {
+  margin: 0;
+  font-family: 'Inter', 'Roboto', 'Helvetica', 'Arial', sans-serif;
+  background: var(--background);
+  color: var(--text-color);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.ttt-container {
+  margin: 0 auto;
+  max-width: 370px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: #fff;
+  margin-top: 132px;
+  border-radius: 24px;
+  box-shadow: 0 6px 38px rgba(33,53,103,0.11);
+  padding: 38px 36px 36px 36px;
+}
+
+.ttt-board {
+  display: grid;
+  grid-template-columns: repeat(3, var(--cell-size));
+  grid-template-rows: repeat(3, var(--cell-size));
+  gap: 8px;
+  margin: 0 auto 24px auto;
+  background: var(--background);
+  border-radius: 14px;
+  padding: 7px;
+  box-shadow: 0 2px 11px rgba(25, 118, 210, 0.09);
+}
+
+.ttt-cell {
+  width: var(--cell-size);
+  height: var(--cell-size);
+  background: var(--secondary);
+  border: none;
+  border-radius: 10px;
+  font-size: var(--cell-font);
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 1px 4px #ffedc980;
+  margin: 0;
+  cursor: pointer;
+  transition: background 0.19s, color 0.21s;
+}
+.ttt-cell:disabled,
+.ttt-cell[disabled] {
+  opacity: 0.69;
+  cursor: not-allowed;
+  background: #f5f7fa;
+  color: var(--text-secondary);
+}
+
+.ttt-status {
+  font-size: 1.21rem;
+  font-weight: 500;
+  margin-bottom: 26px;
+  letter-spacing: 0.021em;
+  color: var(--primary);
+  min-height: 2.2em;
+  text-align: center;
+  background: #fefefe;
+  padding: 5px 0 5px 0;
+  border-radius: 8px;
+}
+
+.ttt-actions {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+/* Standard Button (override .btn in light mode) */
+.btn {
+  background-color: var(--primary);
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  padding: 10px 20px;
+  font-size: 1.02rem;
+  font-weight: 500;
+  cursor: pointer;
+  margin: 0 3px;
+  transition: background 0.18s;
+  box-shadow: 0 1px 3px rgba(33, 53, 103, 0.03);
+}
+.btn:hover,
+.btn:focus {
+  background: #1253a6;
+}
+
+.btn-large {
+  padding: 13px 32px;
+  font-size: 1.17rem;
+  border-radius: 6px;
+}
+
+
+.app {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.ttt-container {
+  margin: 0 auto;
+  max-width: 370px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: #fff;
+  margin-top: 132px;
+  border-radius: 24px;
+  box-shadow: 0 6px 38px rgba(33,53,103,0.11);
+  padding: 38px 36px 36px 36px;
+}
+
+.ttt-board {
+  display: grid;
+  grid-template-columns: repeat(3, var(--cell-size));
+  grid-template-rows: repeat(3, var(--cell-size));
+  gap: 8px;
+  margin: 0 auto 24px auto;
+  background: var(--background);
+  border-radius: 14px;
+  padding: 7px;
+  box-shadow: 0 2px 11px rgba(25, 118, 210, 0.09);
+}
+
+.ttt-cell {
+  width: var(--cell-size);
+  height: var(--cell-size);
+  background: var(--secondary);
+  border: none;
+  border-radius: 10px;
+  font-size: var(--cell-font);
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 1px 4px #ffedc980;
+  margin: 0;
+  cursor: pointer;
+  transition: background 0.19s, color 0.21s;
+}
+.ttt-cell:disabled,
+.ttt-cell[disabled] {
+  opacity: 0.69;
+  cursor: not-allowed;
+  background: #f5f7fa;
+  color: var(--text-secondary);
+}
+
+.ttt-status {
+  font-size: 1.21rem;
+  font-weight: 500;
+  margin-bottom: 26px;
+  letter-spacing: 0.021em;
+  color: var(--primary);
+  min-height: 2.2em;
+  text-align: center;
+  background: #fefefe;
+  padding: 5px 0 5px 0;
+  border-radius: 8px;
+}
+
+.ttt-actions {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+/* Standard Button (override .btn in light mode) */
+.btn {
+  background-color: var(--primary);
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  padding: 10px 20px;
+  font-size: 1.02rem;
+  font-weight: 500;
+  cursor: pointer;
+  margin: 0 3px;
+  transition: background 0.18s;
+  box-shadow: 0 1px 3px rgba(33, 53, 103, 0.03);
+}
+.btn:hover,
+.btn:focus {
+  background: #1253a6;
+}
+
+.btn-large {
+  padding: 13px 32px;
+  font-size: 1.17rem;
+  border-radius: 6px;
+}
+
+
+.navbar {
+  background-color: var(--base-dark);
+  padding: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid var(--border-color);
+  position: fixed;
+  top: 0;
+  width: 100%;
+  box-sizing: border-box;
+  z-index: 100;
+}
+
+.ttt-container {
+  margin: 0 auto;
+  max-width: 370px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: #fff;
+  margin-top: 132px;
+  border-radius: 24px;
+  box-shadow: 0 6px 38px rgba(33,53,103,0.11);
+  padding: 38px 36px 36px 36px;
+}
+
+.ttt-board {
+  display: grid;
+  grid-template-columns: repeat(3, var(--cell-size));
+  grid-template-rows: repeat(3, var(--cell-size));
+  gap: 8px;
+  margin: 0 auto 24px auto;
+  background: var(--background);
+  border-radius: 14px;
+  padding: 7px;
+  box-shadow: 0 2px 11px rgba(25, 118, 210, 0.09);
+}
+
+.ttt-cell {
+  width: var(--cell-size);
+  height: var(--cell-size);
+  background: var(--secondary);
+  border: none;
+  border-radius: 10px;
+  font-size: var(--cell-font);
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 1px 4px #ffedc980;
+  margin: 0;
+  cursor: pointer;
+  transition: background 0.19s, color 0.21s;
+}
+.ttt-cell:disabled,
+.ttt-cell[disabled] {
+  opacity: 0.69;
+  cursor: not-allowed;
+  background: #f5f7fa;
+  color: var(--text-secondary);
+}
+
+.ttt-status {
+  font-size: 1.21rem;
+  font-weight: 500;
+  margin-bottom: 26px;
+  letter-spacing: 0.021em;
+  color: var(--primary);
+  min-height: 2.2em;
+  text-align: center;
+  background: #fefefe;
+  padding: 5px 0 5px 0;
+  border-radius: 8px;
+}
+
+.ttt-actions {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+/* Standard Button (override .btn in light mode) */
+.btn {
+  background-color: var(--primary);
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  padding: 10px 20px;
+  font-size: 1.02rem;
+  font-weight: 500;
+  cursor: pointer;
+  margin: 0 3px;
+  transition: background 0.18s;
+  box-shadow: 0 1px 3px rgba(33, 53, 103, 0.03);
+}
+.btn:hover,
+.btn:focus {
+  background: #1253a6;
+}
+
+.btn-large {
+  padding: 13px 32px;
+  font-size: 1.17rem;
+  border-radius: 6px;
+}
+
+
+.logo {
+  font-size: 1.25rem;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.ttt-container {
+  margin: 0 auto;
+  max-width: 370px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: #fff;
+  margin-top: 132px;
+  border-radius: 24px;
+  box-shadow: 0 6px 38px rgba(33,53,103,0.11);
+  padding: 38px 36px 36px 36px;
+}
+
+.ttt-board {
+  display: grid;
+  grid-template-columns: repeat(3, var(--cell-size));
+  grid-template-rows: repeat(3, var(--cell-size));
+  gap: 8px;
+  margin: 0 auto 24px auto;
+  background: var(--background);
+  border-radius: 14px;
+  padding: 7px;
+  box-shadow: 0 2px 11px rgba(25, 118, 210, 0.09);
+}
+
+.ttt-cell {
+  width: var(--cell-size);
+  height: var(--cell-size);
+  background: var(--secondary);
+  border: none;
+  border-radius: 10px;
+  font-size: var(--cell-font);
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 1px 4px #ffedc980;
+  margin: 0;
+  cursor: pointer;
+  transition: background 0.19s, color 0.21s;
+}
+.ttt-cell:disabled,
+.ttt-cell[disabled] {
+  opacity: 0.69;
+  cursor: not-allowed;
+  background: #f5f7fa;
+  color: var(--text-secondary);
+}
+
+.ttt-status {
+  font-size: 1.21rem;
+  font-weight: 500;
+  margin-bottom: 26px;
+  letter-spacing: 0.021em;
+  color: var(--primary);
+  min-height: 2.2em;
+  text-align: center;
+  background: #fefefe;
+  padding: 5px 0 5px 0;
+  border-radius: 8px;
+}
+
+.ttt-actions {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+/* Standard Button (override .btn in light mode) */
+.btn {
+  background-color: var(--primary);
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  padding: 10px 20px;
+  font-size: 1.02rem;
+  font-weight: 500;
+  cursor: pointer;
+  margin: 0 3px;
+  transition: background 0.18s;
+  box-shadow: 0 1px 3px rgba(33, 53, 103, 0.03);
+}
+.btn:hover,
+.btn:focus {
+  background: #1253a6;
+}
+
+.btn-large {
+  padding: 13px 32px;
+  font-size: 1.17rem;
+  border-radius: 6px;
+}
+
+
+.logo-symbol {
+  color: var(--base-light);
+}
+
+.ttt-container {
+  margin: 0 auto;
+  max-width: 370px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: #fff;
+  margin-top: 132px;
+  border-radius: 24px;
+  box-shadow: 0 6px 38px rgba(33,53,103,0.11);
+  padding: 38px 36px 36px 36px;
+}
+
+.ttt-board {
+  display: grid;
+  grid-template-columns: repeat(3, var(--cell-size));
+  grid-template-rows: repeat(3, var(--cell-size));
+  gap: 8px;
+  margin: 0 auto 24px auto;
+  background: var(--background);
+  border-radius: 14px;
+  padding: 7px;
+  box-shadow: 0 2px 11px rgba(25, 118, 210, 0.09);
+}
+
+.ttt-cell {
+  width: var(--cell-size);
+  height: var(--cell-size);
+  background: var(--secondary);
+  border: none;
+  border-radius: 10px;
+  font-size: var(--cell-font);
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 1px 4px #ffedc980;
+  margin: 0;
+  cursor: pointer;
+  transition: background 0.19s, color 0.21s;
+}
+.ttt-cell:disabled,
+.ttt-cell[disabled] {
+  opacity: 0.69;
+  cursor: not-allowed;
+  background: #f5f7fa;
+  color: var(--text-secondary);
+}
+
+.ttt-status {
+  font-size: 1.21rem;
+  font-weight: 500;
+  margin-bottom: 26px;
+  letter-spacing: 0.021em;
+  color: var(--primary);
+  min-height: 2.2em;
+  text-align: center;
+  background: #fefefe;
+  padding: 5px 0 5px 0;
+  border-radius: 8px;
+}
+
+.ttt-actions {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+/* Standard Button (override .btn in light mode) */
+.btn {
+  background-color: var(--primary);
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  padding: 10px 20px;
+  font-size: 1.02rem;
+  font-weight: 500;
+  cursor: pointer;
+  margin: 0 3px;
+  transition: background 0.18s;
+  box-shadow: 0 1px 3px rgba(33, 53, 103, 0.03);
+}
+.btn:hover,
+.btn:focus {
+  background: #1253a6;
+}
+
+.btn-large {
+  padding: 13px 32px;
+  font-size: 1.17rem;
+  border-radius: 6px;
+}
+
+
+.container {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 0 24px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.ttt-container {
+  margin: 0 auto;
+  max-width: 370px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: #fff;
+  margin-top: 132px;
+  border-radius: 24px;
+  box-shadow: 0 6px 38px rgba(33,53,103,0.11);
+  padding: 38px 36px 36px 36px;
+}
+
+.ttt-board {
+  display: grid;
+  grid-template-columns: repeat(3, var(--cell-size));
+  grid-template-rows: repeat(3, var(--cell-size));
+  gap: 8px;
+  margin: 0 auto 24px auto;
+  background: var(--background);
+  border-radius: 14px;
+  padding: 7px;
+  box-shadow: 0 2px 11px rgba(25, 118, 210, 0.09);
+}
+
+.ttt-cell {
+  width: var(--cell-size);
+  height: var(--cell-size);
+  background: var(--secondary);
+  border: none;
+  border-radius: 10px;
+  font-size: var(--cell-font);
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 1px 4px #ffedc980;
+  margin: 0;
+  cursor: pointer;
+  transition: background 0.19s, color 0.21s;
+}
+.ttt-cell:disabled,
+.ttt-cell[disabled] {
+  opacity: 0.69;
+  cursor: not-allowed;
+  background: #f5f7fa;
+  color: var(--text-secondary);
+}
+
+.ttt-status {
+  font-size: 1.21rem;
+  font-weight: 500;
+  margin-bottom: 26px;
+  letter-spacing: 0.021em;
+  color: var(--primary);
+  min-height: 2.2em;
+  text-align: center;
+  background: #fefefe;
+  padding: 5px 0 5px 0;
+  border-radius: 8px;
+}
+
+.ttt-actions {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+/* Standard Button (override .btn in light mode) */
+.btn {
+  background-color: var(--primary);
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  padding: 10px 20px;
+  font-size: 1.02rem;
+  font-weight: 500;
+  cursor: pointer;
+  margin: 0 3px;
+  transition: background 0.18s;
+  box-shadow: 0 1px 3px rgba(33, 53, 103, 0.03);
+}
+.btn:hover,
+.btn:focus {
+  background: #1253a6;
+}
+
+.btn-large {
+  padding: 13px 32px;
+  font-size: 1.17rem;
+  border-radius: 6px;
+}
+
+
+.hero {
+  padding-top: 120px;
+  padding-bottom: 64px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+}
+
+.ttt-container {
+  margin: 0 auto;
+  max-width: 370px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: #fff;
+  margin-top: 132px;
+  border-radius: 24px;
+  box-shadow: 0 6px 38px rgba(33,53,103,0.11);
+  padding: 38px 36px 36px 36px;
+}
+
+.ttt-board {
+  display: grid;
+  grid-template-columns: repeat(3, var(--cell-size));
+  grid-template-rows: repeat(3, var(--cell-size));
+  gap: 8px;
+  margin: 0 auto 24px auto;
+  background: var(--background);
+  border-radius: 14px;
+  padding: 7px;
+  box-shadow: 0 2px 11px rgba(25, 118, 210, 0.09);
+}
+
+.ttt-cell {
+  width: var(--cell-size);
+  height: var(--cell-size);
+  background: var(--secondary);
+  border: none;
+  border-radius: 10px;
+  font-size: var(--cell-font);
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 1px 4px #ffedc980;
+  margin: 0;
+  cursor: pointer;
+  transition: background 0.19s, color 0.21s;
+}
+.ttt-cell:disabled,
+.ttt-cell[disabled] {
+  opacity: 0.69;
+  cursor: not-allowed;
+  background: #f5f7fa;
+  color: var(--text-secondary);
+}
+
+.ttt-status {
+  font-size: 1.21rem;
+  font-weight: 500;
+  margin-bottom: 26px;
+  letter-spacing: 0.021em;
+  color: var(--primary);
+  min-height: 2.2em;
+  text-align: center;
+  background: #fefefe;
+  padding: 5px 0 5px 0;
+  border-radius: 8px;
+}
+
+.ttt-actions {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+/* Standard Button (override .btn in light mode) */
+.btn {
+  background-color: var(--primary);
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  padding: 10px 20px;
+  font-size: 1.02rem;
+  font-weight: 500;
+  cursor: pointer;
+  margin: 0 3px;
+  transition: background 0.18s;
+  box-shadow: 0 1px 3px rgba(33, 53, 103, 0.03);
+}
+.btn:hover,
+.btn:focus {
+  background: #1253a6;
+}
+
+.btn-large {
+  padding: 13px 32px;
+  font-size: 1.17rem;
+  border-radius: 6px;
+}
+
+
+.subtitle {
+  color: var(--base-light);
+  font-weight: 500;
+  font-size: 1.1rem;
+}
+
+.ttt-container {
+  margin: 0 auto;
+  max-width: 370px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: #fff;
+  margin-top: 132px;
+  border-radius: 24px;
+  box-shadow: 0 6px 38px rgba(33,53,103,0.11);
+  padding: 38px 36px 36px 36px;
+}
+
+.ttt-board {
+  display: grid;
+  grid-template-columns: repeat(3, var(--cell-size));
+  grid-template-rows: repeat(3, var(--cell-size));
+  gap: 8px;
+  margin: 0 auto 24px auto;
+  background: var(--background);
+  border-radius: 14px;
+  padding: 7px;
+  box-shadow: 0 2px 11px rgba(25, 118, 210, 0.09);
+}
+
+.ttt-cell {
+  width: var(--cell-size);
+  height: var(--cell-size);
+  background: var(--secondary);
+  border: none;
+  border-radius: 10px;
+  font-size: var(--cell-font);
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 1px 4px #ffedc980;
+  margin: 0;
+  cursor: pointer;
+  transition: background 0.19s, color 0.21s;
+}
+.ttt-cell:disabled,
+.ttt-cell[disabled] {
+  opacity: 0.69;
+  cursor: not-allowed;
+  background: #f5f7fa;
+  color: var(--text-secondary);
+}
+
+.ttt-status {
+  font-size: 1.21rem;
+  font-weight: 500;
+  margin-bottom: 26px;
+  letter-spacing: 0.021em;
+  color: var(--primary);
+  min-height: 2.2em;
+  text-align: center;
+  background: #fefefe;
+  padding: 5px 0 5px 0;
+  border-radius: 8px;
+}
+
+.ttt-actions {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+/* Standard Button (override .btn in light mode) */
+.btn {
+  background-color: var(--primary);
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  padding: 10px 20px;
+  font-size: 1.02rem;
+  font-weight: 500;
+  cursor: pointer;
+  margin: 0 3px;
+  transition: background 0.18s;
+  box-shadow: 0 1px 3px rgba(33, 53, 103, 0.03);
+}
+.btn:hover,
+.btn:focus {
+  background: #1253a6;
+}
+
+.btn-large {
+  padding: 13px 32px;
+  font-size: 1.17rem;
+  border-radius: 6px;
+}
+
+
+.title {
+  font-size: 3.5rem;
+  font-weight: 600;
+  line-height: 1.2;
+  margin: 0;
+}
+
+.ttt-container {
+  margin: 0 auto;
+  max-width: 370px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: #fff;
+  margin-top: 132px;
+  border-radius: 24px;
+  box-shadow: 0 6px 38px rgba(33,53,103,0.11);
+  padding: 38px 36px 36px 36px;
+}
+
+.ttt-board {
+  display: grid;
+  grid-template-columns: repeat(3, var(--cell-size));
+  grid-template-rows: repeat(3, var(--cell-size));
+  gap: 8px;
+  margin: 0 auto 24px auto;
+  background: var(--background);
+  border-radius: 14px;
+  padding: 7px;
+  box-shadow: 0 2px 11px rgba(25, 118, 210, 0.09);
+}
+
+.ttt-cell {
+  width: var(--cell-size);
+  height: var(--cell-size);
+  background: var(--secondary);
+  border: none;
+  border-radius: 10px;
+  font-size: var(--cell-font);
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 1px 4px #ffedc980;
+  margin: 0;
+  cursor: pointer;
+  transition: background 0.19s, color 0.21s;
+}
+.ttt-cell:disabled,
+.ttt-cell[disabled] {
+  opacity: 0.69;
+  cursor: not-allowed;
+  background: #f5f7fa;
+  color: var(--text-secondary);
+}
+
+.ttt-status {
+  font-size: 1.21rem;
+  font-weight: 500;
+  margin-bottom: 26px;
+  letter-spacing: 0.021em;
+  color: var(--primary);
+  min-height: 2.2em;
+  text-align: center;
+  background: #fefefe;
+  padding: 5px 0 5px 0;
+  border-radius: 8px;
+}
+
+.ttt-actions {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+/* Standard Button (override .btn in light mode) */
+.btn {
+  background-color: var(--primary);
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  padding: 10px 20px;
+  font-size: 1.02rem;
+  font-weight: 500;
+  cursor: pointer;
+  margin: 0 3px;
+  transition: background 0.18s;
+  box-shadow: 0 1px 3px rgba(33, 53, 103, 0.03);
+}
+.btn:hover,
+.btn:focus {
+  background: #1253a6;
+}
+
+.btn-large {
+  padding: 13px 32px;
+  font-size: 1.17rem;
+  border-radius: 6px;
+}
+
+
+.description {
+  font-size: 1.1rem;
+  line-height: 1.5;
+  color: var(--text-secondary);
+  max-width: 600px;
+  margin-bottom: 16px;
+}
+
+.ttt-container {
+  margin: 0 auto;
+  max-width: 370px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: #fff;
+  margin-top: 132px;
+  border-radius: 24px;
+  box-shadow: 0 6px 38px rgba(33,53,103,0.11);
+  padding: 38px 36px 36px 36px;
+}
+
+.ttt-board {
+  display: grid;
+  grid-template-columns: repeat(3, var(--cell-size));
+  grid-template-rows: repeat(3, var(--cell-size));
+  gap: 8px;
+  margin: 0 auto 24px auto;
+  background: var(--background);
+  border-radius: 14px;
+  padding: 7px;
+  box-shadow: 0 2px 11px rgba(25, 118, 210, 0.09);
+}
+
+.ttt-cell {
+  width: var(--cell-size);
+  height: var(--cell-size);
+  background: var(--secondary);
+  border: none;
+  border-radius: 10px;
+  font-size: var(--cell-font);
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 1px 4px #ffedc980;
+  margin: 0;
+  cursor: pointer;
+  transition: background 0.19s, color 0.21s;
+}
+.ttt-cell:disabled,
+.ttt-cell[disabled] {
+  opacity: 0.69;
+  cursor: not-allowed;
+  background: #f5f7fa;
+  color: var(--text-secondary);
+}
+
+.ttt-status {
+  font-size: 1.21rem;
+  font-weight: 500;
+  margin-bottom: 26px;
+  letter-spacing: 0.021em;
+  color: var(--primary);
+  min-height: 2.2em;
+  text-align: center;
+  background: #fefefe;
+  padding: 5px 0 5px 0;
+  border-radius: 8px;
+}
+
+.ttt-actions {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+/* Standard Button (override .btn in light mode) */
+.btn {
+  background-color: var(--primary);
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  padding: 10px 20px;
+  font-size: 1.02rem;
+  font-weight: 500;
+  cursor: pointer;
+  margin: 0 3px;
+  transition: background 0.18s;
+  box-shadow: 0 1px 3px rgba(33, 53, 103, 0.03);
+}
+.btn:hover,
+.btn:focus {
+  background: #1253a6;
+}
+
+.btn-large {
+  padding: 13px 32px;
+  font-size: 1.17rem;
+  border-radius: 6px;
+}
+
+
+.btn {
+  background-color: var(--base-light);
+  color: white;
+  border: none;
+  border-radius: 4px;
+  padding: 10px 20px;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.ttt-container {
+  margin: 0 auto;
+  max-width: 370px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: #fff;
+  margin-top: 132px;
+  border-radius: 24px;
+  box-shadow: 0 6px 38px rgba(33,53,103,0.11);
+  padding: 38px 36px 36px 36px;
+}
+
+.ttt-board {
+  display: grid;
+  grid-template-columns: repeat(3, var(--cell-size));
+  grid-template-rows: repeat(3, var(--cell-size));
+  gap: 8px;
+  margin: 0 auto 24px auto;
+  background: var(--background);
+  border-radius: 14px;
+  padding: 7px;
+  box-shadow: 0 2px 11px rgba(25, 118, 210, 0.09);
+}
+
+.ttt-cell {
+  width: var(--cell-size);
+  height: var(--cell-size);
+  background: var(--secondary);
+  border: none;
+  border-radius: 10px;
+  font-size: var(--cell-font);
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 1px 4px #ffedc980;
+  margin: 0;
+  cursor: pointer;
+  transition: background 0.19s, color 0.21s;
+}
+.ttt-cell:disabled,
+.ttt-cell[disabled] {
+  opacity: 0.69;
+  cursor: not-allowed;
+  background: #f5f7fa;
+  color: var(--text-secondary);
+}
+
+.ttt-status {
+  font-size: 1.21rem;
+  font-weight: 500;
+  margin-bottom: 26px;
+  letter-spacing: 0.021em;
+  color: var(--primary);
+  min-height: 2.2em;
+  text-align: center;
+  background: #fefefe;
+  padding: 5px 0 5px 0;
+  border-radius: 8px;
+}
+
+.ttt-actions {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+/* Standard Button (override .btn in light mode) */
+.btn {
+  background-color: var(--primary);
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  padding: 10px 20px;
+  font-size: 1.02rem;
+  font-weight: 500;
+  cursor: pointer;
+  margin: 0 3px;
+  transition: background 0.18s;
+  box-shadow: 0 1px 3px rgba(33, 53, 103, 0.03);
+}
+.btn:hover,
+.btn:focus {
+  background: #1253a6;
+}
+
+.btn-large {
+  padding: 13px 32px;
+  font-size: 1.17rem;
+  border-radius: 6px;
+}
+
+
+.btn:hover {
+  background-color: #7691ff;
+}
+
+.ttt-container {
+  margin: 0 auto;
+  max-width: 370px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: #fff;
+  margin-top: 132px;
+  border-radius: 24px;
+  box-shadow: 0 6px 38px rgba(33,53,103,0.11);
+  padding: 38px 36px 36px 36px;
+}
+
+.ttt-board {
+  display: grid;
+  grid-template-columns: repeat(3, var(--cell-size));
+  grid-template-rows: repeat(3, var(--cell-size));
+  gap: 8px;
+  margin: 0 auto 24px auto;
+  background: var(--background);
+  border-radius: 14px;
+  padding: 7px;
+  box-shadow: 0 2px 11px rgba(25, 118, 210, 0.09);
+}
+
+.ttt-cell {
+  width: var(--cell-size);
+  height: var(--cell-size);
+  background: var(--secondary);
+  border: none;
+  border-radius: 10px;
+  font-size: var(--cell-font);
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 1px 4px #ffedc980;
+  margin: 0;
+  cursor: pointer;
+  transition: background 0.19s, color 0.21s;
+}
+.ttt-cell:disabled,
+.ttt-cell[disabled] {
+  opacity: 0.69;
+  cursor: not-allowed;
+  background: #f5f7fa;
+  color: var(--text-secondary);
+}
+
+.ttt-status {
+  font-size: 1.21rem;
+  font-weight: 500;
+  margin-bottom: 26px;
+  letter-spacing: 0.021em;
+  color: var(--primary);
+  min-height: 2.2em;
+  text-align: center;
+  background: #fefefe;
+  padding: 5px 0 5px 0;
+  border-radius: 8px;
+}
+
+.ttt-actions {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+/* Standard Button (override .btn in light mode) */
+.btn {
+  background-color: var(--primary);
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  padding: 10px 20px;
+  font-size: 1.02rem;
+  font-weight: 500;
+  cursor: pointer;
+  margin: 0 3px;
+  transition: background 0.18s;
+  box-shadow: 0 1px 3px rgba(33, 53, 103, 0.03);
+}
+.btn:hover,
+.btn:focus {
+  background: #1253a6;
+}
+
+.btn-large {
+  padding: 13px 32px;
+  font-size: 1.17rem;
+  border-radius: 6px;
+}
+
+
+.btn-large {
+  padding: 12px 24px;
+  font-size: 1.1rem;
+}
+
+.ttt-container {
+  margin: 0 auto;
+  max-width: 370px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: #fff;
+  margin-top: 132px;
+  border-radius: 24px;
+  box-shadow: 0 6px 38px rgba(33,53,103,0.11);
+  padding: 38px 36px 36px 36px;
+}
+
+.ttt-board {
+  display: grid;
+  grid-template-columns: repeat(3, var(--cell-size));
+  grid-template-rows: repeat(3, var(--cell-size));
+  gap: 8px;
+  margin: 0 auto 24px auto;
+  background: var(--background);
+  border-radius: 14px;
+  padding: 7px;
+  box-shadow: 0 2px 11px rgba(25, 118, 210, 0.09);
+}
+
+.ttt-cell {
+  width: var(--cell-size);
+  height: var(--cell-size);
+  background: var(--secondary);
+  border: none;
+  border-radius: 10px;
+  font-size: var(--cell-font);
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 1px 4px #ffedc980;
+  margin: 0;
+  cursor: pointer;
+  transition: background 0.19s, color 0.21s;
+}
+.ttt-cell:disabled,
+.ttt-cell[disabled] {
+  opacity: 0.69;
+  cursor: not-allowed;
+  background: #f5f7fa;
+  color: var(--text-secondary);
+}
+
+.ttt-status {
+  font-size: 1.21rem;
+  font-weight: 500;
+  margin-bottom: 26px;
+  letter-spacing: 0.021em;
+  color: var(--primary);
+  min-height: 2.2em;
+  text-align: center;
+  background: #fefefe;
+  padding: 5px 0 5px 0;
+  border-radius: 8px;
+}
+
+.ttt-actions {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+/* Standard Button (override .btn in light mode) */
+.btn {
+  background-color: var(--primary);
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  padding: 10px 20px;
+  font-size: 1.02rem;
+  font-weight: 500;
+  cursor: pointer;
+  margin: 0 3px;
+  transition: background 0.18s;
+  box-shadow: 0 1px 3px rgba(33, 53, 103, 0.03);
+}
+.btn:hover,
+.btn:focus {
+  background: #1253a6;
+}
+
+.btn-large {
+  padding: 13px 32px;
+  font-size: 1.17rem;
+  border-radius: 6px;
+}
+
